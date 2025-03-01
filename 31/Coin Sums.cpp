@@ -1,6 +1,5 @@
 #include <vector>
 #include <iostream>
-#include <algorithm>
 using namespace std;
 
 int findNumWays(int goal, vector<int>& availableCoins){
@@ -25,8 +24,6 @@ int main(){
     
     for (int & coin : availableCoins)
         cin >> coin;
-    
-    sort(availableCoins.begin(), availableCoins.end());
     
     cin >> goal;
     
