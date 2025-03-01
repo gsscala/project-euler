@@ -26,10 +26,11 @@ int main() {
     cin >> MAXN;
     auto [primes, isPrime] = sieve(MAXN);
     vector<int> prefixSum(primes.size() + 1, 0);
-    vector<int> length(MAXN + 1, 0);
 
     for (int i = 0; i < primes.size(); i++)
         prefixSum[i + 1] = prefixSum[i] + primes[i];
+
+    pair<int, int> resp = {0, 0};
 
     for (int i = 0; i < primes.size(); i++)
         for (int j = i + 1; j < primes.size(); j++) {
@@ -38,13 +39,9 @@ int main() {
                 break;
 
             if (isPrime[sum])
-                length[sum] = max(length[sum], j - i);
+                resp = max(resp, {j - i, sum});
         }
 
-    pair<int, int> resp = {0, 0};
     
-    for (int i = 0; i <= MAXN; i++)
-        resp = max(resp, {length[i], i});
-
     cout << resp.second << endl;
 }
